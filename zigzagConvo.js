@@ -1,3 +1,15 @@
+/*The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+P   A   H   N
+A P L S I I G
+Y   I   R
+And then read line by line: "PAHNAPLSIIGYIR"
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+string convert(string s, int numRows);*/
+
+
 var convert = function(s, numRows) {
     let arr=[];
     let loop=0;
@@ -5,6 +17,10 @@ var convert = function(s, numRows) {
     let y=0;
     let changeDirection=false;
     let result="";
+
+    if(numRows==1){
+        return s;
+    }
     for(let i=0; i<numRows;i++){
         arr[i] =[];
     }
@@ -20,9 +36,10 @@ var convert = function(s, numRows) {
             loop++; 
         }
         if(changeDirection){
-            y--;
+          
             x=arr.length;
             while(y>0 && loop<s.length){
+                y--;
                 for(let i=0;i<x;i++){
                     if(y-i == 1){
                         arr[i].push(s.charAt(loop));
@@ -36,7 +53,7 @@ var convert = function(s, numRows) {
 
                     }
                 }                
-                y--;
+                
             }
             y++;
             changeDirection = false;
@@ -56,11 +73,8 @@ var convert = function(s, numRows) {
         }
         y++;
     }
-    console.table(arr);
-    console.log(result);
+    return result;
 };
 
-convert("PAYPALISHIRING",4)
-arr=[[1212],[1212,12],[12],[123]];
+console.log(convert("PAYPALISHIRING",3));
 
-console.log(arr.length);
